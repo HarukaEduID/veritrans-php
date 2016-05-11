@@ -80,6 +80,7 @@ class Veritrans_ApiRequestor {
     if (class_exists('VT_Tests') && VT_Tests::$stubHttp) {
       $result = self::processStubed($curl_options, $url, $server_key, $data_hash, $post);
     } else {
+      curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
       $result = curl_exec($ch);
       // curl_close($ch);
     }
